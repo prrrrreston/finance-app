@@ -1,9 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  entry: path.resolve(__dirname, '..', 'finance-app', 'src', 'index.tsx'),
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.resolve(__dirname, '..', 'finance-app', 'dist'),
     filename: 'index.bundle.js',
   },
   devServer: {
@@ -12,11 +18,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/,
@@ -24,5 +36,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+  mode: 'development',
 };
