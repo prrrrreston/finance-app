@@ -1,11 +1,15 @@
 import React from 'react';
 import './tailwind.css';
-
+import './App.scss';
 
 function App() {
   return (
-    <div>
-      <h1 className= 'text-[100px] text-red-500'>welcome poop { new Date().toString() }</h1>
+    <div className="mainContainer">
+      <div className='month'>
+        <h1>December</h1>
+      </div>
+      <div className="budgetContainer"></div>
+      <div className="logs"></div>
     </div>
   );
 }
