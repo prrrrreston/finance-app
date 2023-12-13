@@ -1,15 +1,18 @@
-import React from 'react';
 import './tailwind.css';
+import Log from './components/Log';
+import MonthlyBudget from './components/MonthlyBudget';
+import WeeklyBudget from './components/WeeklyBudget';
+import Month from './components/Month';
 
 function App() {
   return (
-    <div className="mainContainer flex flex-col items-center justify-around h-screen border border-red-500">
-      <div className='month flex border border-green-500'>December</div>
-      <div className="budgetContainer flex border border-yellow-500">
-        <div>Weekly budget</div>
-        <div>Monthly Budget</div>
+    <div className='mainContainer flex flex-col items-center justify-around h-screen border border-red-500'>
+      <Month />
+      <div className='budgetContainer flex gap-10 justify-center w-screen border border-yellow-500'>
+        <WeeklyBudget />
+        <MonthlyBudget />
       </div>
-      <div className="logs border border-blue-500">Log</div>
+      <Log/>
     </div>
   );
 }
